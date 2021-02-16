@@ -1,0 +1,38 @@
+{
+  "name": "tracie-server",
+  "version": "0.0.1",
+  "description": "Events analytic made simple",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hieunc229/tracie-server.git"
+  },
+  "keywords": [
+    "event",
+    "analytics"
+  ],
+  "author": "Hieu C. Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hieunc229/tracie-server/issues"
+  },
+  "homepage": "https://github.com/hieunc229/tracie-server#readme",
+  "devDependencies": {
+    "@types/shortid": "^0.0.29",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.21.17",
+    "shortid": "^2.2.16",
+    "sqlite3": "^5.0.2"
+  }
+}
