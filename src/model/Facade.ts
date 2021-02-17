@@ -22,9 +22,10 @@ export default class Facade {
 }
 
 export type Query = {
-    name?: string,
-    start?: Date,
-    end?: Date,
+    $name?: string,
+    $start?: Date,
+    $end?: Date,
+    $interval?: string
 }
 
 export type QueryResult = {
@@ -33,22 +34,28 @@ export type QueryResult = {
 
 export function knexQuerySQLite(conn: KnexConn, table: string, query: Query): Promise<QueryResult> {
     return new Promise((resolve, reject) => {
-        let { name, start, end } = query;
+
+        let { $name, $start, $end } = query;
 
         let req = conn.select().table(table)
-            .where("name", name);
+            .where("name", $name);
 
-        if (start) {
-            req = req.where("created", "<=", start);
+        if ($start) {
+            req = req.where("created", ">=", formatDate($start));
         }
 
 
-        if (end) {
-            req = req.where("created", ">=", end);
+        if ($end) {
+            req = req.where("created", "<",  formatDate($end));
         }
 
         req.then(rs => {
             resolve({ data: rs as any[] })
         }).catch(reject);
     });
+}
+
+function formatDate(input:any) {
+    // return new Date(input).toJSON().substr(0,19) + 'Z';
+    return new Date(input).getTime();
 }

@@ -1,11 +1,11 @@
 export type DataGroupType = { [name: string]: number };
 
-export function createGroup(data: (string | number)[], type?: "date" | "hour" | "minute") {
+export function createGroup(data: (string | number)[], type?: "week" | "month" | "day" | "hour" | "minute") {
 
     let dates = data.map(d => new Date(d));
     dates.sort((a, b) => a.getTime() - b.getTime());
 
-    const len = subLength[type || "date"];
+    const len = subLength[type || "day"];
 
     return dates.map(d => d.toISOString()).reduce((groups: DataGroupType, time) => {
         const date = time.substr(0, len);
@@ -19,7 +19,9 @@ export function createGroup(data: (string | number)[], type?: "date" | "hour" | 
 
 
 const subLength = {
-    date: 10,
+    week: 40,
+    month: 40,
+    day: 10,
     hour: 13,
     minute: 16
 }
