@@ -42,6 +42,7 @@ export function knexQuerySQLite(conn: KnexConn, table: string, query: Query): Pr
 
         if ($start) {
             req = req.where("created", ">=", formatDate($start));
+            // console.log("start", formatDate($start));
         }
 
 
