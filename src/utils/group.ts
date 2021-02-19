@@ -40,9 +40,9 @@ function getTimeWindow(options: { start: Date, end: Date, interval: TimeInterval
     let startTime = new Date(start);
     let data: any[] = [];
     let last = new Date(start);
-    let endMs = end.getTime();
+    let endMs = end.getTime() + 1;
 
-    while (last.getTime() <= endMs) {
+    while (last.getTime() < endMs) {
         last = increase({
             date: last,
             interval,
