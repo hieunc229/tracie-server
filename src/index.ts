@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 import app from "./app";
-import { initateConnection } from "./conn";
 import { initiateHandler } from "./handlers";
 
 const PORT = process.env.PORT as any || 8080;
@@ -11,5 +10,4 @@ initiateHandler(app);
 
 app.listen(PORT, HOST, () => {
     console.log(`Tracie server started at ${HOST}:${PORT}`);
-    initateConnection();
 })
