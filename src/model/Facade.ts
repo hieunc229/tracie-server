@@ -15,21 +15,28 @@ export default class Facade {
     }
 
 
-    query(query: Query): Promise<QueryResult> {
-        return knexQuerySQLite(conn, EVENT_TABLE, query);
+    query(query: Query): Promise<QueryResult[]> {
+        let { $name, ...rest } = query;
+        return Promise.all(
+            $name.split(",")
+            .map(name =>
+                knexQuerySQLite(conn, EVENT_TABLE, { $name: name, ...rest })
+            )
+        );
     }
 
 }
 
 export type Query = {
-    $name?: string,
+    $name: string,
     $start?: Date,
     $end?: Date,
     $interval?: string
 }
 
 export type QueryResult = {
-    data: any[]
+    data: any[],
+    name: string
 }
 
 export function knexQuerySQLite(conn: KnexConn, table: string, query: Query): Promise<QueryResult> {
@@ -47,16 +54,16 @@ export function knexQuerySQLite(conn: KnexConn, table: string, query: Query): Pr
 
 
         if ($end) {
-            req = req.where("created", "<",  formatDate($end));
+            req = req.where("created", "<", formatDate($end));
         }
 
         req.then(rs => {
-            resolve({ data: rs as any[] })
+            resolve({ data: rs as any[], name: $name })
         }).catch(reject);
     });
 }
 
-function formatDate(input:any) {
+function formatDate(input: any) {
     // return new Date(input).toJSON().substr(0,19) + 'Z';
     return new Date(input).getTime();
 }

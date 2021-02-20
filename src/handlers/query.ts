@@ -6,21 +6,29 @@ import { resError, resOK } from "./utils";
 
 export function queryHandler(req: Request, res: Response) {
 
+    // @ts-ignore
     fc.query(req.query)
-        .then(rs => {
-            let out = rs.data.map(x => x.created);
-            let { $start = getStart(out), $end = getEnd(out), $interval, $intervalValue = "1" } = req.query as any;
+        .then(queryResults => {
 
-            let start = new Date($start);
-            let end = new Date($end);
+            let json = queryResults.map(rs => {
 
-            resOK(req, res, {
-                data: transformOutputData(out, {
-                    start, end, 
-                    intervalValue: parseInt($intervalValue),
-                    interval: $interval as any || "day"
-                })
-            });
+                let out = rs.data.map(x => x.created);
+
+                let { $start = getStart(out), $end = getEnd(out), $interval, $intervalValue = "1" } = req.query as any;
+
+                let start = new Date($start);
+                let end = new Date($end);
+                return {
+                    name: rs.name,
+                    result: transformOutputData(out, {
+                        start, end,
+                        intervalValue: parseInt($intervalValue),
+                        interval: $interval as any || "day"
+                    })
+                }
+            })
+
+            resOK(req, res, { data: json });
         })
         .catch(err => {
             resError(req, res, { message: err.toString() });

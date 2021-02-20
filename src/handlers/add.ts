@@ -10,7 +10,7 @@ export function addHandler(req: Request, res: Response) {
         name
     })
         .then(rs => {
-            resOK(req, res);
+            resOK(req, res, { status: 204 });
         })
         .catch(err => {
             resError(req, res, { message: err.toString() }, err);
