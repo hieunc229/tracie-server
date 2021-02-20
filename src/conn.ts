@@ -1,6 +1,6 @@
 import Knex from "knex";
 
-const STORAGE_PATH = process.env.STORAGE_DIR || "";
+const STORAGE_PATH = process.env.TC_STORE_PATH || "";
 
 const conn = Knex({
     client: "sqlite3",

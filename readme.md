@@ -1,8 +1,13 @@
 # Tracie Server
 
-A self-hosted event tracking services, built with [Knex](http://knexjs.org/) (support Postgres, MSSQL, MySQL, MariaDB, SQLite3, Oracle, and Amazon Redshift), in NodeJS.
+A self-hosted event tracking services, built with SQLite, in NodeJS.
 
-_Note: The server use SQLite3 by default, and only support one domain at the moment_
+<!-- TOC -->
+- Setup
+- Server APIs
+    - Create event: [POST] /tc
+    - Query data: [GET] /tc?{query}={value}
+<!-- /TOC -->
 
 ## Setup
 
@@ -16,10 +21,12 @@ Your server should be ready.
 
 ## Server (APIs):
 
-### Create an event
+Server APIs are exposed through `TRACIE_ENDPOINT` path setup on the `.env` file.
+
+### Create an event:
 
 ```js
-[POST] /endpoint: create a trace instance 
+[POST] /tc
 ```
 
 Body content must contains a `name` property
@@ -33,7 +40,7 @@ Body content must contains a `name` property
 ### Query data
 
 ```js
-[GET] /endpoint?{query}={value}: query data
+[GET] /tc?{query}={value}
 ```
 
 Available queries params:
