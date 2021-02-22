@@ -1,10 +1,10 @@
 {
   "name": "tracie-server",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Events analytic made simple",
-  "main": "./cli/index.js",
+  "main": "./tools/index.js",
   "bin": {
-    "tracie": "./index/cli.js"
+    "tracie": "./tools/index.js"
   },
   "scripts": {
     "dev": "ts-node-dev src/index.ts",

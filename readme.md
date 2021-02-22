@@ -2,10 +2,12 @@
 
 # Tracie Server
 
-A self-hosted event tracking services, built with SQLite, in NodeJS.
+A minimal, self-hosted event tracking services, built with SQLite (Knex), using NodeJS.
 
 <!-- TOC -->
 - [Setup](#setup)
+    - [Run using PM2](run-using-pm2)
+    - [Run as a Node application](run-as-a-node-application)
 - [Server APIs](#server-apis)
     - [Create event](#create-an-event): [POST] /tc
     - [Query data](#query-data): [GET] /tc?{query}={value}
@@ -13,13 +15,23 @@ A self-hosted event tracking services, built with SQLite, in NodeJS.
 
 ## Setup
 
-Asume you have clone or download the project to your machine, continue the following steps to setup:
+Asume you have clone or download the project to your machine. Once your server is running, the server should be accessable via `//localhost:8080` or as configed.
+
+You can run using pm2, or as a node application as below:
+
+### Run using PM2
+
+[PM2](https://pm2.keymetrics.io/) is a node process manager. A [ecosystem.config.js](/ecosystem.config.js) config file should be ready to use. You can also customize as you want. Once completed, start the pm2 process:
+
+```sh
+$ pm2 start
+```
+
+### Run as a Node application
 
 1. Setup enviroment variables by copy `.env.blank` content to a new `.env` file
 2. Setup connection by run `yarn setup` or `npm run setup`
-3. Start server by run `yarn start` or `npm run start`
-
-Your server should be ready. 
+3. Start server by run `yarn start` or `npm start`
 
 ## Server (APIs):
 
