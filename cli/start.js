@@ -10,13 +10,15 @@ const defaultConfigs = {
         TC_STORE_DIR: `./dev-data`,
         TC_HOST: 'localhost',
         TC_PORT: 8080,
-        TC_ENDPOINT: `/tc`
+        TC_ENDPOINT: `/tc`,
+        TC_DASHBOARD_PATH: "/dashboard"
     },
     env_production: {
         TC_STORE_DIR: `./data`,
         TC_HOST: '0.0.0.0',
         TC_PORT: 80,
-        TC_ENDPOINT: `/tc`
+        TC_ENDPOINT: `/tc`,
+        TC_DASHBOARD_PATH: "/dashboard"
     }
 }
 
