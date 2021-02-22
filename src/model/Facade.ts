@@ -17,6 +17,9 @@ export default class Facade {
 
     query(query: Query): Promise<QueryResult[]> {
         let { $name, ...rest } = query;
+
+        if (!$name) return Promise.resolve([]);
+
         return Promise.all(
             $name.split(",")
             .map(name =>
@@ -49,7 +52,6 @@ export function knexQuerySQLite(conn: KnexConn, table: string, query: Query): Pr
 
         if ($start) {
             req = req.where("created", ">=", formatDate($start));
-            // console.log("start", formatDate($start));
         }
 
 
@@ -64,6 +66,5 @@ export function knexQuerySQLite(conn: KnexConn, table: string, query: Query): Pr
 }
 
 function formatDate(input: any) {
-    // return new Date(input).toJSON().substr(0,19) + 'Z';
     return new Date(input).getTime();
 }

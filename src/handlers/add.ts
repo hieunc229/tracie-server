@@ -1,6 +1,6 @@
-import fc from "./fc";
+import fc from "./utils/fc";
 import { Request, Response } from "express";
-import { resError, resOK } from "./utils";
+import { resError, resOK } from "./helpers";
 
 export function addHandler(req: Request, res: Response) {
 

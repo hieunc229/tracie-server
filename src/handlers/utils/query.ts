@@ -1,8 +1,8 @@
 import fc from "./fc";
 
 import { Request, Response } from "express";
-import { transformOutputData } from "../utils/group";
-import { resError, resOK } from "./utils";
+import { transformOutputData } from "../../utils/group";
+import { resError, resOK } from "../helpers";
 
 export function queryHandler(req: Request, res: Response) {
 

@@ -1,7 +1,7 @@
 
 import { Express } from "express";
 import { addHandler } from "./add";
-import { queryHandler } from "./query";
+import { queryHandler } from "./utils/query";
 
 const endpoint = process.env.TC_ENDPOINT || "/"
 

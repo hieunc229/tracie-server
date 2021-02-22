@@ -1,12 +1,14 @@
+<img src="docs/tracie.svg" height="60" alt="Tracie"/>
+
 # Tracie Server
 
 A self-hosted event tracking services, built with SQLite, in NodeJS.
 
 <!-- TOC -->
-- Setup
-- Server APIs
-    - Create event: [POST] /tc
-    - Query data: [GET] /tc?{query}={value}
+- [Setup](#setup)
+- [Server APIs](#server-apis)
+    - [Create event](#create-an-event): [POST] /tc
+    - [Query data](#query-data): [GET] /tc?{query}={value}
 <!-- /TOC -->
 
 ## Setup
